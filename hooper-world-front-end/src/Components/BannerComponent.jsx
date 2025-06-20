@@ -21,7 +21,7 @@ export const BannerComponent = ({ imgSrc, title, description, imgRight = true })
             src={imgSrc}
             alt={title}
             className="img-fluid rounded"
-            style={{ maxHeight: '60vh', objectFit: 'contain', maxWidth: '850px' }}
+            style={{ maxHeight: '60vh', objectFit: 'fit', maxWidth: '900px' }}
           />
         </div>
       </div>
