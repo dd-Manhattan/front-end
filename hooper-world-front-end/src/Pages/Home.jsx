@@ -4,16 +4,24 @@ import { BannerComponent } from '../Components/BannerComponent'
 
 export const Home = () => {
   const scrollContainerRef = useRef(null)
+  const inicioRef = useRef(null)
+  const sobreNosRef = useRef(null)
+  const quemSomosRef = useRef(null)
 
   return (
     <>
-      <HearderComponent scrollContainerRef={scrollContainerRef} />
+      <HearderComponent 
+        scrollContainerRef={scrollContainerRef}
+        sectionRefs={{ inicioRef, sobreNosRef, quemSomosRef }} 
+      />
       <div
         ref={scrollContainerRef}
-        className="bg-dark text-white "
+        className="bg-dark text-white"
         style={{ height: '100vh', overflowY: 'auto' }}
       >
+        {/* Seção INÍCIO - Adicione a ref diretamente no BannerComponent */}
         <BannerComponent
+          ref={inicioRef}
           imgSrc="../public/Assets/banner-1.jpg"
           title="Bem vindo ao Hooper.co"
           description="A plataforma interativa feita por e para fãs de basquete.
@@ -22,26 +30,40 @@ Aqui você encontra um espaço único para se conectar com o mundo da bola laran
 Explore, compartilhe e viva a experiência do basquete como nunca antes.
 
 Entre na quadra. O jogo começa agora!
-
 "
+          buttonLink='/register'
+          hasButton={true}
+          buttonText='Não tem cadastro? clique aqui'
           imgRight={true}
         />
 
+        {/* Seção SOBRE NÓS */}
         <BannerComponent
+          ref={sobreNosRef}
           imgSrc="../public/Assets/banner-2.jpg"
-          title="Banner à Esquerda"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          title="Hooper.co - Sua Conexão com o Basquete"
+          description="Aos 13, o basquete mudou minha vida. Hoje, criei o Hooper.co para compartilhar essa paixão. Aqui, você acompanha seu time, testa seus conhecimentos e faz parte de uma comunidade que vive o jogo intensamente.
+
+Entre agora e viva o basquete com a gente."
           imgRight={false}
+          hasButton={true}
+          buttonText="Entrar e acompanhar seu time"
+          buttonLink="/login"
         />
 
+        {/* Seção QUEM SOMOS */}
         <BannerComponent
-          imgSrc="../public/Assets/bg-teste.jpg"
-          title="Mais um Banner"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          imgRight={true}
-        />
+          ref={quemSomosRef}
+          imgSrc="../public/Assets/banner-3.jpg"
+          title="Quem Somos - A Paixão que Nos Une"
+          description="Na Hooper.co, o basquete é mais do que um jogo — é um propósito. Nascemos da vivência real de um garoto de 13 anos que encontrou na bola laranja a força para superar a depressão e a obesidade. 
 
-    
+Transformamos essa história em uma plataforma onde fãs como você encontram notícias atualizadas, estatísticas, quizzes e uma comunidade vibrante. Somos feitos por quem vive o esporte e para quem sente a alma vibrar a cada jogo.
+
+Se você também respira basquete, aqui é o seu lugar."
+          imgRight={true}
+          hasButton={false}
+        />
       </div>
     </>
   )
