@@ -27,33 +27,37 @@ const LoginComponent = () => {
 
       if (response.token) {
         sessionStorage.setItem('token', response.token);
+        sessionStorage.setItem('user', JSON.stringify(response));
+        toast.success('Login realizado com sucesso!');
+        setTimeout(() => {
+          navigate('/profile');
+        }, 1500);
+      } else {
+        toast.error('Credenciais inválidas');
       }
-
-      toast.success('Login realizado com sucesso!');
-      setTimeout(() => {
-        navigate('/');
-      }, 1500);
     } catch (error) {
-      toast.error( error.message );
+      toast.error(error.message || 'Erro ao realizar login');
     }
   };
 
   return (
-    <div className="bg-dark vh-100 d-flex justify-content-center align-items-center">
-      <div className="d-flex flex-row" style={{ width: "75%", height: "73%" }}>
-        <div className="d-none d-md-block rounded-start" style={{ width: "55%" }}>
+    <div className="bg-dark min-vh-100 d-flex justify-content-center align-items-center p-3">
+      <div
+        className="row w-100 shadow-lg rounded"
+        style={{ maxWidth: "900px", height: "90vh" }}
+      >
+        {/* Lado esquerdo com imagem */}
+        <div className="col-md-6 d-none d-md-block p-0">
           <img
             src="/Assets/banner-login.jpg"
-            alt="login-bg"
-            className="img-fluid rounded-start"
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            alt="login"
+            className="img-fluid h-100 w-100"
+            style={{ objectFit: 'cover' }}
           />
         </div>
 
-        <div
-          className="bg-white rounded-end p-4 d-flex flex-column justify-content-center align-items-center position-relative"
-          style={{ width: "45%" }}
-        >
+        {/* Lado direito com formulário */}
+        <div className="col-12 col-md-6 bg-white p-4 d-flex flex-column justify-content-center position-relative">
           <a
             href="/"
             className="position-absolute btn btn-dark d-flex align-items-center justify-content-center"
@@ -71,7 +75,7 @@ const LoginComponent = () => {
 
           <h2 className="text-dark mb-4 text-center mt-4">Bem-vindo ao Hooper.co</h2>
 
-          <form className="w-100 px-4" onSubmit={handleSubmit}>
+          <form className="w-100 px-3" onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Email</label>
               <input
@@ -96,7 +100,7 @@ const LoginComponent = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-dark w-100">Entrar</button>
+            <button type="submit" className="btn btn-dark w-100 mt-2">Entrar</button>
 
             <div className="mt-3 text-center">
               <span className="text-muted">Não tem uma conta? </span>

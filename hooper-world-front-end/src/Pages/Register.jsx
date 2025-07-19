@@ -5,7 +5,6 @@ import RegisterComponent from '../Components/RegisterComponent'
 export const Register = () => {
   return (
     <>
-    <HearderComponent/>
     <RegisterComponent/>
     </>
 
